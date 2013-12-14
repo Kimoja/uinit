@@ -35,18 +35,24 @@
         $.fn.uinit = function()
         {
             var el = $(this),
-                classes = el.attr('ui-class');
+                classes;
             
-            if(classes)
+            if(!el.data('uinit'))
             {
-                $.fn.uinit.init(el, classes);
+                if((classes = el.attr('ui-class')))
+                {
+                    $.fn.uinit.init(el, classes);
+                }
             }
             
             $('[ui-class]', el).each(
                 function()
                 {
                     var e = $(this);
-                    $.fn.uinit.init(e, e.attr('ui-class'));
+                    if(!el.data('uinit'))
+                    {
+                        $.fn.uinit.init(e, e.attr('ui-class'));
+                    }
                 }
             );
         };
@@ -69,6 +75,8 @@
                     console.error("jQuery.uinit error. Missing factory " + factories_names[i]);
                 }
             }
+            
+            el.data('uinit', true);
         }
         
         /**
@@ -126,11 +134,6 @@
                             getters.push("(a=e.attr('" + name_attribute+ "'))&&eval('" + 
                                 expr + "(' + a.replace(/\'/g, '\\\'') + ')');");
                         }
-                        //si l'attribut vaut ref, on retrouve la référence depuis le niveau global
-                        else if(attribute === 'ref')
-                        {
-                            getters.push(expr + "$.fn.uinit.getReference(e.attr('" + name_attribute+ "'));");
-                        }
                         //si l'attribut vaut lambda, on créé une fonction. Marce comme les attributs de type
                         //onclick, seulement le context est l'objet jQuery et non DOM
                         else if(attribute === 'lambda')
@@ -184,8 +187,6 @@
             //applique le niveau gobal
             (attributes, '',  prefix ? prefix + '-' : '');
            
-           
-           
             //compile et affecte la méthode dans le hash des fabriques
             $.fn.uinit.factories[name] = Function.apply(
                 window, 
@@ -203,26 +204,6 @@
         
         //le hash des fabriques
         $.fn.uinit.factories = {
-        };
-        
-        $.fn.uinit.getReference = function(reference)
-        {
-            if(reference)
-            {
-                var names = reference.split('.'),
-                    l = names.length,
-                    i = 0,
-                    ns = window;
-                
-                for(; i < l - 1; i++)
-                {
-                    ns = ns[names[i]];
-                    
-                    if(!ns)return;
-                }
-                
-                return ns[names[i]];
-            }
         };
         
     }

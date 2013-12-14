@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>uinit test</title>
+        
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script src="lib/inputmask/jquery.inputmask.js" type="text/javascript"></script>
+        
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/black-tie/jquery-ui.min.css" type="text/css" media="all" />
+        
+        <script src="jquery.uinit.js"></script>
+        <script src="jquery-ui.uinit.js"></script>
+        <style>
+            body
+            {
+                font-size : 0.55em;
+            }
+        </style>
+        <script>
+            
+            /*var x = {};
+            
+            x.a = function (f, e) {
+                var c = {}, a;
+                c.disabled = (a = e.attr('disabled')) != null ? true : false;
+                c.icons = {};
+                c.icons.primary = e.attr('icons-primary');
+                c.icons.secondary = e.attr('icons-secondary');
+                c.label = e.attr('label');
+                c.text = (a = e.attr('text')) != null ? true : false;
+                return f(e, c)
+            };
+            
+            eval("x.b=function (f, e) {"+
+                "var c = {}, a;"+
+                "c.disabled = (a = e.attr('disabled')) != null ? true : false;"+
+                "c.icons = {};"+
+                "c.icons.primary = e.attr('icons-primary');"+
+                "c.icons.secondary = e.attr('icons-secondary');"+
+                "c.label = e.attr('label');"+
+                "c.text = (a = e.attr('text')) != null ? true : false;"+
+                "return f(e, c)"+
+            "}");
+            
+            for(var i = 0; i < 1000; i++)
+            {
+                x.a(function(){}, $('body'));
+                x.b(function(){}, $('body'));
+            }
+            
+            var d = new Date();
+            
+            for(var i = 0; i < 10000; i++)
+            {
+                x.b(function(){}, $('body'));
+            }
+            
+            console.log('x.b = ' +( (new Date()) - d));
+           
+            
+            var d = new Date();
+            
+            for(var i = 0; i < 10000; i++)
+            {
+                x.a(function(){}, $('body'));
+            }
+            
+            console.log('x.a = ' +( (new Date()) - d));*/
+            
+            $(
+                function()
+                {
+                   $('body').uinit();
+                   
+                   $('#testb').change(function(){console.log($(this).val())})
+                    console.log($.fn.uinit.factories.button);
+                }
+            );
+        </script>
+    </head>
+    
+    <body>
+        <!-- --------------------AUTOCOMPLETE------------------------------------------- -->
+        <h1>AUTOCOMPLETE</h1>
+        <input type="text"  ui-class="autocomplete"  
+            delay="300"
+            auto-focus
+            append-to="#auto-anchor"
+            min-length="3"
+            position-my="left top"
+            position-at="left bottom"
+            data='["ActionScript","AppleScript","Asp","BASIC","C","C++","Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy","Haskell","Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"]'
+        >
+        <div id="auto-anchor"></div>
+        
+        <!-- --------------------BUTTON------------------------------------------- -->
+        <h1>BUTTON</h1>
+        <button ui-class="button"  
+            icons-primary="ui-icon-gear"
+            icons-secondary="ui-icon-triangle-1-s"
+            label="My Button"
+            text
+        >My Button</button>
+        
+        <!-- --------------------DATEPICKER------------------------------------------- -->
+        <h1>DATEPICKER</h1>
+        <input ui-class="datepicker"  
+            date-format="mm-dd-yy"
+        >
+        
+        <!-- --------------------ACCORDION------------------------------------------- -->
+        <h1>ACCORDION</h1>
+        <div ui-class="accordion" 
+             active="2"
+             animate-easing=""
+             animate-duration="2000"
+             collapsible
+             event="mouseover"
+             header="h2"
+             height-style="content"
+             icons-header="ui-icon-plus"
+             icons-active-header="ui-icon-minus"
+        >
+            <h2>Section 1</h2>
+            <div>
+              <p>
+              Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
+              ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
+              amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
+              odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
+              </p>
+            </div>
+            <h2>Section 2</h2>
+            <div>
+              <p>
+              Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
+              purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
+              velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
+              suscipit faucibus urna.
+              </p>
+            </div>
+            <h2>Section 3</h2>
+            <div>
+              <p>
+              Nam enim risus, molestie et, porta ac, aliquam ac, risus. Quisque lobortis.
+              Phasellus pellentesque purus in massa. Aenean in pede. Phasellus ac libero
+              ac tellus pellentesque semper. Sed ac felis. Sed commodo, magna quis
+              lacinia ornare, quam ante aliquam nisi, eu iaculis leo purus venenatis dui.
+              </p>
+              <ul>
+                <li>List item one</li>
+                <li>List item two</li>
+                <li>List item three</li>
+              </ul>
+            </div>
+        </div>
+        
+    </body>
+</html>
