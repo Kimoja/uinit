@@ -35,6 +35,13 @@ $.fn.uinit.addFactory(
     },
     'accordion'
 );
+
+$(
+    function()
+    {
+       $('body').uinit();
+    }
+);
 `````
 
 `````html
@@ -44,7 +51,6 @@ $.fn.uinit.addFactory(
      accordion-animate-duration="2000"
      accordion-collapsible
      accordion-event="mouseover"
-     accordion-header="h2"
      accordion-header="h2"
      accordion-height-style="content"
      accordion-icons-header="ui-icon-plus"
