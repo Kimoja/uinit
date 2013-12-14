@@ -8,7 +8,9 @@ Initilise from an object factories, DOM elements with the attribute ui-class (sa
  * EXAMPLE UINIT JQUERY UI ACCORDION
  *****************************************************************/
 $.fn.uinit.addFactory(
+    // the name of the factory
     'accordion', 
+    // the factory
     function(el, config)
     {
         if(config.notAnimate)
@@ -16,6 +18,10 @@ $.fn.uinit.addFactory(
         
         el.accordion(config);
     },
+
+    //The configuration of the construction of the configuration object.
+    //The keys are the attributes  names,  and values, expressions of
+    //recovery attributes
     {
         'active' : 'eval',
         'not-animate' : 'boolean',
@@ -33,6 +39,7 @@ $.fn.uinit.addFactory(
             'active-header' : 'string'
         }
     },
+    //attribute prefix
     'accordion'
 );
 
