@@ -1,0 +1,31 @@
+{ 
+  "name": "uinit",
+  "version": "0.0.1",
+  "title": "uinit",
+  "description": "Customizing HTML attributes to automate the creation of widgets",
+  "keywords": [
+    "jquery",
+    "attribute",
+    "ui",
+    "widget",
+    "automate", 
+    "data"
+  ],
+  "homepage": "https://github.com/Kimoja/uinit",
+  "author": {
+    "name": "Joakim Carrilho de Almeida",
+    "url": "http://jocode.org/"
+  },
+  "licenses" : [ 
+    {
+      "type" : "MIT",
+      "url"  : "https://github.com/jquery/jquery/blob/master/MIT-LICENSE.txt"
+    }
+  ],
+  "bugs": "https://github.com/Kimoja/uinit/issues",
+  "dependencies": {
+    "jquery": ">=1.7"
+  },
+  "docs": "https://github.com/Kimoja/uinit/blob/master/README.md",
+  "demo": "https://github.com/Kimoja/uinit"
+}
