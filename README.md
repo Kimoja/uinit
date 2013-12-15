@@ -5,82 +5,93 @@ Initilise from an object factories, DOM elements with the attribute ui-class (sa
 
 `````javascript
 /*****************************************************************
- * EXAMPLE UINIT JQUERY UI ACCORDION
+ * EXAMPLE UINIT JQUERY UI DIALOG
  *****************************************************************/
 $.fn.uinit.addFactory(
-    // the name of the factory
-    'accordion', 
-    // the factory
-    function(el, config)
-    {
-        if(config.notAnimate)
-            config.animate = false;
-        
-        el.accordion(config);
-    },
-
-    //The configuration of the construction of the configuration object.
-    //The keys are the attributes  names,  and values, expressions of
-    //recovery attributes
-    {
-        'active' : 'eval',
-        'not-animate' : 'boolean',
-        'animate' : {
-            'easing' : 'string',
-            'duration' : 'integer'
-        },
-        'collapsible' : 'boolean',
-        'disabled' : 'boolean',
-        'event' : 'string',
-        'header' : 'string',
-        'height-style' : 'string',
-        'icons' : {
-            'header' : 'string',
-            'active-header' : 'string'
+   'ui-dialog', 
+   function(el, config)
+   {
+        if(!config.show.enabled)
+        {
+            delete config.show;
         }
-    },
-    //attribute prefix
-    'accordion'
-);
-
-$(
-    function()
-    {
-       $('body').uinit();
-    }
+        
+        if(!config.hide.enabled)
+        {
+            delete config.hide;
+        }
+        
+        el.dialog(config);
+   },
+   {    
+        'append-to' : 'string',
+        'auto-open' : 'boolean',
+        'buttons' : new $.fn.uinit.DomListDescriptor(
+            '>ui-button',
+            {
+                'text' : 'string',
+                'click' : 'function'
+            },
+            ''
+        ),
+        'close-on-escape' : 'boolean',
+        'close-text' : 'string',
+        'dialog-class' : 'string',
+        'draggable' : 'boolean',
+        'height' : 'string',
+        'max-height' : 'integer',
+        'max-width' : 'integer',
+        'min-height' : 'integer',
+        'min-width' : 'integer',
+        'modal' : 'boolean',
+        'position' : {
+            'my' : 'string',
+            'at' : 'string',
+            'collision' : 'boolean'
+        },
+        'resizable' : 'boolean',
+        'title' : 'string',
+        'width' : 'integer',
+        
+        'show' : {
+            'enabled' : 'boolean',
+            'effect' : 'boolean',
+            'delay' : 'integer',
+            'duration' : 'integer',
+            'easing ' : 'string'
+        },
+        
+        'hide' : {
+            'enabled' : 'boolean',
+            'effect' : 'boolean',
+            'delay' : 'integer',
+            'duration' : 'integer',
+            'easing ' : 'string'
+        },
+        
+        //events
+        'before-close' : 'function',
+        'close' : 'function',
+        'create' : 'function',
+        'drag' : 'function',
+        'drag-start' : 'function',
+        'drag-stop' : 'function',
+        'focus' : 'function',
+        'open' : 'function',
+        'resize' : 'function',
+        'resize-start' : 'function',
+        'resize-stop' : 'function'
+   }
 );
 `````
 
 `````html
-<div ui-class="accordion" 
-     accordion-active="2"
-     accordion-animate-easing=""
-     accordion-animate-duration="2000"
-     accordion-collapsible
-     accordion-event="mouseover"
-     accordion-header="h2"
-     accordion-height-style="content"
-     accordion-icons-header="ui-icon-plus"
-     accordion-icons-active-header="ui-icon-minus"
->
-    <h2>Section 1</h2>
+<div ui-dialog buttons=">button" modal show-enabled show-duration="1000" auto-open draggable>
     <div>
-      <p>
-      Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-      ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-      amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-      odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-      </p>
+        My Dialog content
     </div>
-    <h2>Section 2</h2>
-    <div>
-      <p>
-      Sed non urna. Donec et ante. Phasellus eu ligula. Vestibulum sit amet
-      purus. Vivamus hendrerit, dolor at aliquet laoreet, mauris turpis porttitor
-      velit, faucibus interdum tellus libero ac justo. Vivamus non quam. In
-      suscipit faucibus urna.
-      </p>
-    </div>
-    <!-- etc... -->
-  </div>
+    <ui-button text="Ok" click="testReference.eventLog"></ui-button>
+    <ui-button text="Ok2" click="testReference.eventLog"></ui-button>
+    <ui-button text="Ok3" click="testReference.eventLog"></ui-button>
+</div>
 `````
