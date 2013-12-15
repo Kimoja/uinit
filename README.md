@@ -1,7 +1,7 @@
 uinit
 =====
 
-Automate the creation of a widget via a configuration object from html attributes
+Automates the creation of widgets based on a configuration object from html attributes
 
 `````javascript
 /*****************************************************************
