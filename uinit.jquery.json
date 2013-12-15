@@ -1,8 +1,8 @@
 { 
   "name": "uinit",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "title": "uinit",
-  "description": "Customizing HTML attributes to automate the creation of widgets",
+  "description": "Automates the creation of widgets based on a configuration object from html attributes",
   "keywords": [
     "jquery",
     "attribute",
