@@ -86,7 +86,7 @@ $.fn.uinit.addFactory(
 `````
 
 `````html
-<div ui-dialog buttons=">button" modal show-enabled show-duration="1000" auto-open draggable>
+<div ui-dialog modal show-enabled show-duration="1000" auto-open draggable>
     <div>
         My Dialog content
     </div>
