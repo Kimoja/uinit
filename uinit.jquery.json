@@ -1,6 +1,6 @@
 { 
   "name": "uinit",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "title": "uinit",
   "description": "Customizing HTML attributes to automate the creation of widgets",
   "keywords": [

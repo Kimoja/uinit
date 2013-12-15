@@ -6,12 +6,12 @@
         
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-        <script src="lib/inputmask/jquery.inputmask.js" type="text/javascript"></script>
+        <!--<script src="lib/inputmask/jquery.inputmask.js" type="text/javascript"></script>-->
         
         <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/black-tie/jquery-ui.min.css" type="text/css" media="all" />
         
-        <script src="jquery.uinit.js"></script>
-        <script src="jquery-ui.uinit.js"></script>
+        <script src="../src/jquery.uinit.js"></script>
+        <script src="../src/jquery-ui.uinit.js"></script>
         <style>
             body
             {
@@ -19,63 +19,17 @@
             }
         </style>
         <script>
-            
-            /*var x = {};
-            
-            x.a = function (f, e) {
-                var c = {}, a;
-                c.disabled = (a = e.attr('disabled')) != null ? true : false;
-                c.icons = {};
-                c.icons.primary = e.attr('icons-primary');
-                c.icons.secondary = e.attr('icons-secondary');
-                c.label = e.attr('label');
-                c.text = (a = e.attr('text')) != null ? true : false;
-                return f(e, c)
+
+            var testReference = {
+                eventLog : function(e, ui)
+                {
+                    console.log(e.type);
+                }
             };
-            
-            eval("x.b=function (f, e) {"+
-                "var c = {}, a;"+
-                "c.disabled = (a = e.attr('disabled')) != null ? true : false;"+
-                "c.icons = {};"+
-                "c.icons.primary = e.attr('icons-primary');"+
-                "c.icons.secondary = e.attr('icons-secondary');"+
-                "c.label = e.attr('label');"+
-                "c.text = (a = e.attr('text')) != null ? true : false;"+
-                "return f(e, c)"+
-            "}");
-            
-            for(var i = 0; i < 1000; i++)
-            {
-                x.a(function(){}, $('body'));
-                x.b(function(){}, $('body'));
-            }
-            
-            var d = new Date();
-            
-            for(var i = 0; i < 10000; i++)
-            {
-                x.b(function(){}, $('body'));
-            }
-            
-            console.log('x.b = ' +( (new Date()) - d));
-           
-            
-            var d = new Date();
-            
-            for(var i = 0; i < 10000; i++)
-            {
-                x.a(function(){}, $('body'));
-            }
-            
-            console.log('x.a = ' +( (new Date()) - d));*/
-            
             $(
                 function()
                 {
                    $('body').uinit();
-                   
-                   $('#testb').change(function(){console.log($(this).val())})
-                    console.log($.fn.uinit.factories.button);
                 }
             );
         </script>
@@ -84,7 +38,7 @@
     <body>
         <!-- --------------------AUTOCOMPLETE------------------------------------------- -->
         <h1>AUTOCOMPLETE</h1>
-        <input type="text"  ui-class="autocomplete"  
+        <input type="text"  ui-autocomplete 
             delay="300"
             auto-focus
             append-to="#auto-anchor"
@@ -92,12 +46,20 @@
             position-my="left top"
             position-at="left bottom"
             data='["ActionScript","AppleScript","Asp","BASIC","C","C++","Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy","Haskell","Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"]'
+            change="testReference.eventLog"
+            close="testReference.eventLog"
+            create="testReference.eventLog"
+            focus="testReference.eventLog"
+            open="testReference.eventLog"
+            response="testReference.eventLog"
+            search="testReference.eventLog"
+            select="testReference.eventLog"
         >
         <div id="auto-anchor"></div>
         
         <!-- --------------------BUTTON------------------------------------------- -->
         <h1>BUTTON</h1>
-        <button ui-class="button"  
+        <button ui-button 
             icons-primary="ui-icon-gear"
             icons-secondary="ui-icon-triangle-1-s"
             label="My Button"
@@ -106,22 +68,36 @@
         
         <!-- --------------------DATEPICKER------------------------------------------- -->
         <h1>DATEPICKER</h1>
-        <input ui-class="datepicker"  
+        <input ui-datepicker
             date-format="mm-dd-yy"
         >
         
+        <!-- --------------------DIALOG------------------------------------------- -->
+        <h1>DIALOG</h1>
+        <div ui-dialog buttons=">button" modal show-enabled show-duration="1000" auto-open draggable>
+            <div>
+                My Dialog content
+            </div>
+            <ui-button text="Ok" click="testReference.eventLog"></ui-button>
+            <ui-button text="Ok2" click="testReference.eventLog"></ui-button>
+            <ui-button text="Ok3" click="testReference.eventLog"></ui-button>
+        </div>
+        
         <!-- --------------------ACCORDION------------------------------------------- -->
         <h1>ACCORDION</h1>
-        <div ui-class="accordion" 
+        <div ui-accordion
              active="2"
-             animate-easing=""
-             animate-duration="2000"
+             animate-easing="swing"
+             animate-duration="200"
              collapsible
              event="mouseover"
              header="h2"
              height-style="content"
              icons-header="ui-icon-plus"
              icons-active-header="ui-icon-minus"
+             activate="function(e, ui){console.log('testEval');}"
+             before-activate="testReference.eventLog"
+             create="testReference.eventLog"
         >
             <h2>Section 1</h2>
             <div>
