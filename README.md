@@ -99,12 +99,12 @@ $.uinit(
 `````
 
 `````html
-<div ui-dialog modal show-enabled show-duration="1000" auto-open draggable>
+<div ui-dialog  modal show-enabled show-duration="1000" auto-open draggable>
     <div>
         My Dialog content
     </div>
-    <ui-button text="Ok" click="testReference.eventLog"></ui-button>
-    <ui-button text="Ok2" click="testReference.eventLog"></ui-button>
-    <ui-button text="Ok3" click="testReference.eventLog"></ui-button>
+    <ui-button text="Ok" click="testReference.eventLog(e,ui)"></ui-button>
+    <ui-button text="Ok2" click="testReference.eventLog(e,ui)"></ui-button>
+    <ui-button text="Ok3" click="testReference.eventLog(e,ui)"></ui-button>
 </div>
 `````
