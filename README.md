@@ -1,87 +1,100 @@
 uinit
 =====
 
-Automates the creation of widgets based on a configuration object from html attributes
+Initialization function for your own component. Object creation configuartion from HTML attributes. jQuery UI widget initialization from HTML attributes
 
 `````javascript
 /*****************************************************************
  * EXAMPLE UINIT JQUERY UI DIALOG
  *****************************************************************/
-$.fn.uinit.addFactory(
-   'ui-dialog', 
-   function(el, config)
-   {
-        if(!config.show.enabled)
+$.uinit(
+    {
+        name : 'ui-dialog',
+        create : function(el)
         {
-            delete config.show;
-        }
-        
-        if(!config.hide.enabled)
-        {
-            delete config.hide;
-        }
-        
-        el.dialog(config);
-   },
-   {    
-        'append-to' : 'string',
-        'auto-open' : 'boolean',
-        'buttons' : new $.fn.uinit.DomListDescriptor(
-            '>ui-button',
+            var config = this.expando(el);
+           
+            if(!config.show.enabled)
             {
-                'text' : 'string',
-                'click' : 'function'
-            },
-            ''
-        ),
-        'close-on-escape' : 'boolean',
-        'close-text' : 'string',
-        'dialog-class' : 'string',
-        'draggable' : 'boolean',
-        'height' : 'string',
-        'max-height' : 'integer',
-        'max-width' : 'integer',
-        'min-height' : 'integer',
-        'min-width' : 'integer',
-        'modal' : 'boolean',
-        'position' : {
-            'my' : 'string',
-            'at' : 'string',
-            'collision' : 'boolean'
+                delete config.show;
+            }
+
+            if(!config.hide.enabled)
+            {
+                delete config.hide;
+            }
+
+            el.dialog(config);
         },
-        'resizable' : 'boolean',
-        'title' : 'string',
-        'width' : 'integer',
-        
-        'show' : {
-            'enabled' : 'boolean',
-            'effect' : 'boolean',
-            'delay' : 'integer',
-            'duration' : 'integer',
-            'easing ' : 'string'
-        },
-        
-        'hide' : {
-            'enabled' : 'boolean',
-            'effect' : 'boolean',
-            'delay' : 'integer',
-            'duration' : 'integer',
-            'easing ' : 'string'
-        },
-        
-        //events
-        'before-close' : 'function',
-        'close' : 'function',
-        'create' : 'function',
-        'drag' : 'function',
-        'drag-start' : 'function',
-        'drag-stop' : 'function',
-        'focus' : 'function',
-        'open' : 'function',
-        'resize' : 'function',
-        'resize-start' : 'function',
-        'resize-stop' : 'function'
-   }
+        expando :  $.expando(
+            {
+                prefix : '',
+                attributes : 
+                {
+                    'append-to' : 'string',
+                    'auto-open' : 'boolean',
+                    'buttons' : new $.expando.listDescriptor(
+                        {
+                            selector : '>ui-button',
+                            prefix : '',
+                            attributes :
+                            {
+                                'text' : 'string',
+                                'click' : 'function(e,ui)'
+                            }
+                        }
+                    ),
+                    'close-on-escape' : 'boolean',
+                    'close-text' : 'string',
+                    'dialog-class' : 'string',
+                    'draggable' : 'boolean',
+                    'height' : 'string',
+                    'max-height' : 'integer',
+                    'max-width' : 'integer',
+                    'min-height' : 'integer',
+                    'min-width' : 'integer',
+                    'modal' : 'boolean',
+                    'position' : {
+                        'my' : 'string',
+                        'at' : 'string',
+                        'collision' : 'boolean'
+                    },
+                    'resizable' : 'boolean',
+                    'title' : 'string',
+                    'width' : 'integer',
+
+                    'show' : {
+                        'enabled' : 'boolean',
+                        'effect' : 'boolean',
+                        'delay' : 'integer',
+                        'duration' : 'integer',
+                        'easing ' : 'string'
+                    },
+
+                    'hide' : {
+                        'enabled' : 'boolean',
+                        'effect' : 'boolean',
+                        'delay' : 'integer',
+                        'duration' : 'integer',
+                        'easing ' : 'string'
+                    },
+
+                    //events
+                    'before-close' : 'function(e,ui)',
+                    'close' : 'function(e,ui)',
+                    'create' : 'function(e,ui)',
+                    'drag' : 'function(e,ui)',
+                    'drag-start' : 'function(e,ui)',
+                    'drag-stop' : 'function(e,ui)',
+                    'focus' : 'function(e,ui)',
+                    'open' : 'function(e,ui)',
+                    'resize' : 'function(e,ui)',
+                    'resize-start' : 'function(e,ui)',
+                    'resize-stop' : 'function(e,ui)'
+                }
+            }
+        )
+    }
 );
 `````
 
