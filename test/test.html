@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>uinit test</title>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="../src/jquery.uinit.js"></script>
+        <script src="../src/jquery.expando.js"></script>
+        <script>
+            
+        $(
+            function()
+            {
+                /******************************************************************
+                 * UINIT
+                 *****************************************************************/
+                $.uinit(
+                    {
+                        name : 'test-attribute1',
+                        create : function(el)
+                        {
+                            console.log('create test-attribute');
+                            //this.init(el);
+                        },
+                        init : function(el)
+                        {
+                            console.log('init test-attribute');
+                        },
+                        uninit : function(el)
+                        {
+                            console.log('uninit test-attribute');
+                        }
+                    }
+                );
+
+                $.uinit(
+                    {
+                        name : 'test-attribute2',
+                        create : function(el)
+                        {
+                            console.log('create test-attribute2');
+                            //this.init(el);
+                        },
+                        init : function(el)
+                        {
+                            console.log('init test-attribute2');
+                        },
+                        uninit : function(el)
+                        {
+                            console.log('uninit test-attribute2');
+                        }
+                    }
+                );
+
+                console.log('call create ---------------')
+                $('body').uinit();
+
+                console.log('call init ---------------')
+                $('body').uinit('test-attribute1');//only one referenced uinit object 
+                $('body').uinit('test-attribute1', 'test-attribute2');//or more
+
+                console.log('call uninit ---------------')
+                $('body').uninit('test-attribute1');//only one referenced uinit object 
+                $('body').uninit('test-attribute1', 'test-attribute2');//or more
+
+                console.log('call create ---------------')
+                $('body').uinit('test-attribute1', 'test-attribute2');
+
+
+
+                /******************************************************************
+                 * EXPANDO
+                 *****************************************************************/   
+                //example expando 
+                var ex = $.expando(
+                    {
+                        prefix : '',
+                        attributes : 
+                            {
+                            'append-to' : 'string',
+                            'auto-open' : 'boolean',
+                            'buttons' : new $.expando.listDescriptor(
+                                {
+                                    selector : '>ui-button',
+                                    prefix : '',
+                                    attributes :
+                                    {
+                                        'text' : 'string',
+                                        'click' : 'function(e,ui)'
+                                    }
+                                }
+                            ),
+                            'close-on-escape' : 'boolean',
+                            'close-text' : 'string',
+                            'dialog-class' : 'string',
+                            'draggable' : 'boolean',
+                            'height' : 'string',
+                            'max-height' : 'integer',
+                            'max-width' : 'integer',
+                            'min-height' : 'integer',
+                            'min-width' : 'integer',
+                            'modal' : 'boolean',
+                            'position' : {
+                                'my' : 'string',
+                                'at' : 'string',
+                                'collision' : 'boolean'
+                            },
+                            'resizable' : 'boolean',
+                            'title' : 'string',
+                            'width' : 'integer',
+
+                            'show' : {
+                                'enabled' : 'boolean',
+                                'effect' : 'boolean',
+                                'delay' : 'integer',
+                                'duration' : 'integer',
+                                'easing ' : 'string'
+                            },
+
+                            'hide' : {
+                                'enabled' : 'boolean',
+                                'effect' : 'boolean',
+                                'delay' : 'integer',
+                                'duration' : 'integer',
+                                'easing ' : 'string'
+                            },
+
+                            //events
+                            'before-close' : 'function(e,ui)',
+                            'close' : 'function(e,ui)',
+                            'create' : 'function(e,ui)',
+                            'drag' : 'function(e,ui)',
+                            'drag-start' : 'function(e,ui)',
+                            'drag-stop' : 'function(e,ui)',
+                            'focus' : 'function(e,ui)',
+                            'open' : 'function(e,ui)',
+                            'resize' : 'function(e,ui)',
+                            'resize-start' : 'function(e,ui)',
+                            'resize-stop' : 'function(e,ui)'
+                        }
+                    },
+                    true//get the source code
+                );
+
+                console.log('expando source code function ---------------')
+                console.log(ex)
+
+            }
+        );
+        
+        </script>
+    </head>
+    
+    <body>
+        <h1>see the console</h1>
+        <!--  UINIT ELEMENT -->
+        <div test-attribute1 test-attribute2>
+            <div test-attribute1 test-attribute2></div>
+            <div test-attribute1 ></div>
+            <div test-attribute2 ></div>
+        </div>
+    </body>
+    
+    
+    <!-- 
+            $.fn.tpl = function()
+            {
+                return Function(
+                    'var s=' + this.text()
+                    .replace(/^\s*|(\n|\t|\r)+|\s+$/mg, '')
+                    .replace(
+                        /(.*?)<!(=)?\s*(.*?)\s*!>/mg, 
+                        function(m,  str, sh, js)
+                        {
+                            return (str ? "s+='" + str.replace(/'/g, '\\\'') + "';" : '') +
+                                (js ? sh ? "s+=" + js +";" : js  : '');
+                        }
+                    )
+                )
+            };
+        <script type="text/template" id='tpl'>
+            <span>''List item three</span>
+            <!
+                $.eachIf(
+                    this,
+                    function()
+                    {
+                        !>
+                        <div>Super <!= !></div>
+                        <!
+                    }
+                )
+            !>
+        </scri pt>  -->
+</html>

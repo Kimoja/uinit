@@ -8,9 +8,11 @@
         <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <!--<script src="lib/inputmask/jquery.inputmask.js" type="text/javascript"></script>-->
         
-        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/black-tie/jquery-ui.min.css" type="text/css" media="all" />
+        <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/themes/black-tie/jquery-ui.min.css"
+              type="text/css" media="all" />
         
         <script src="../src/jquery.uinit.js"></script>
+        <script src="../src/jquery.expando.js"></script>
         <script src="../src/jquery-ui.uinit.js"></script>
         <style>
             body
@@ -29,9 +31,11 @@
             $(
                 function()
                 {
-                   $('body').uinit();
+                     $('body').uinit();
                 }
             );
+                
+                
         </script>
     </head>
     
@@ -46,14 +50,14 @@
             position-my="left top"
             position-at="left bottom"
             data='["ActionScript","AppleScript","Asp","BASIC","C","C++","Clojure","COBOL","ColdFusion","Erlang","Fortran","Groovy","Haskell","Java","JavaScript","Lisp","Perl","PHP","Python","Ruby","Scala","Scheme"]'
-            change="testReference.eventLog"
-            close="testReference.eventLog"
-            create="testReference.eventLog"
-            focus="testReference.eventLog"
-            open="testReference.eventLog"
-            response="testReference.eventLog"
-            search="testReference.eventLog"
-            select="testReference.eventLog"
+            change="testReference.eventLog(e,ui);"
+            close="testReference.eventLog(e,ui)"
+            create="testReference.eventLog(e,ui)"
+            focus="testReference.eventLog(e,ui)"
+            open="testReference.eventLog(e,ui)"
+            response="testReference.eventLog(e,ui)"
+            search="testReference.eventLog(e,ui)"
+            select="testReference.eventLog(e,ui)"
         >
         <div id="auto-anchor"></div>
         
@@ -78,9 +82,9 @@
             <div>
                 My Dialog content
             </div>
-            <ui-button text="Ok" click="testReference.eventLog"></ui-button>
-            <ui-button text="Ok2" click="testReference.eventLog"></ui-button>
-            <ui-button text="Ok3" click="testReference.eventLog"></ui-button>
+            <ui-button text="Ok" click="testReference.eventLog(e,ui)"></ui-button>
+            <ui-button text="Ok2" click="testReference.eventLog(e,ui)"></ui-button>
+            <ui-button text="Ok3" click="testReference.eventLog(e,ui)"></ui-button>
         </div>
         
         <!-- --------------------ACCORDION------------------------------------------- -->
@@ -96,8 +100,8 @@
              icons-header="ui-icon-plus"
              icons-active-header="ui-icon-minus"
              activate="function(e, ui){console.log('testEval');}"
-             before-activate="testReference.eventLog"
-             create="testReference.eventLog"
+             before-activate="testReference.eventLog(e,ui)"
+             create="testReference.eventLog(e,ui);"
         >
             <h2>Section 1</h2>
             <div>

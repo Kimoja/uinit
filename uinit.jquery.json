@@ -1,8 +1,8 @@
 { 
   "name": "uinit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "title": "uinit",
-  "description": "Automates the creation of widgets based on a configuration object from html attributes",
+  "description": "Initialization function for your own component. Object creation configuartion from HTML attributes. jQuery UI widget initialization from HTML attributes",
   "keywords": [
     "jquery",
     "attribute",
