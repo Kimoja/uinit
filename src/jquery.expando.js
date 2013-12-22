@@ -15,8 +15,8 @@
                 
             var fn = $.expando.compile(
                 config.attributes,
-                '',  
-                config.prefix ? config.prefix + '-' : '', 
+                config.prefix ? config.prefix + '-' : '',  
+                '', 
                 [], 
                 function_getters,
                 true
@@ -38,6 +38,8 @@
             }
             else
             {
+                //console.log("function(e){" + fn + "}");
+                //console.log(Function("e", fn));
                 return source ? "function(e){" + fn + "}" : Function("e", fn);
             }
         };
@@ -144,14 +146,12 @@
             {
                 var args 
                 return "if(a=d.getAttribute('" + name_attribute+ "'))"+
-                    "a.indexOf('function')===0"+
-                        "?eval('" + assignement_expr + "('+a.replace(/\'/g, '\\\'')+')')"+
-                        ":"+ assignement_expr + "Function("+ 
-                            $.map(
-                                /\(([^)]*)\)/m.exec(attribute)[1].split(','), 
-                                function(a){return "'" + a + "'";}
-                            ).concat('a').join(',') +
-                        ");"
+                    assignement_expr + "Function("+ 
+                        $.map(
+                            /\(([^)]*)\)/m.exec(attribute)[1].split(','), 
+                            function(a){return "'" + a + "'";}
+                        ).concat('a').join(',') +
+                    ");"
             },
             
             "json" : function(assignement_expr, name_attribute)
@@ -161,7 +161,8 @@
             
             "data" : function(assignement_expr, name_attribute)
             {
-                return  assignement_expr + "e.data('" + name_attribute+ "');";
+                return  assignement_expr + "e.data('" + 
+                    (/^data-.*/.test(name_attribute) ? name_attribute.slice(5) : name_attribute) + "');";
             },
             
             "integer" : function(assignement_expr, name_attribute)

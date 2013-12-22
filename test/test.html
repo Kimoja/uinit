@@ -73,7 +73,7 @@
                 //example expando 
                 var ex = $.expando(
                     {
-                        prefix : '',
+                        prefix : 'data',//use the data attrubute  
                         attributes : 
                             {
                             'append-to' : 'string',
@@ -81,7 +81,7 @@
                             'buttons' : new $.expando.listDescriptor(
                                 {
                                     selector : '>ui-button',
-                                    prefix : '',
+                                    prefix : 'data',
                                     attributes :
                                     {
                                         'text' : 'string',

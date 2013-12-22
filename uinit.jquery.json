@@ -1,6 +1,6 @@
 { 
   "name": "uinit",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "title": "uinit",
   "description": "Initialization function for your own component. Object creation configuartion from HTML attributes. jQuery UI widget initialization from HTML attributes",
   "keywords": [
